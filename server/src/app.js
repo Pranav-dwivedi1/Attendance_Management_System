@@ -12,17 +12,21 @@ const app = express();
 /**
  * Middleware
  */
+const allowedOrigins = [process.env.CLIENT_URL, "http://localhost:5173"].filter(
+  Boolean,
+);
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
-  })
+  }),
 );
 
 app.use(
   express.json({
     limit: "10mb",
-  })
+  }),
 );
 
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
@@ -35,6 +39,13 @@ app.get("/health", (_req, res) => {
     success: true,
     status: "ok",
     timestamp: new Date().toISOString(),
+  });
+});
+
+app.get("/", (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Attendance Management API is running",
   });
 });
 
