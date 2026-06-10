@@ -23,6 +23,27 @@ router.get("/managers", async (_req, res, next) => {
   }
 });
 
+
+router.get(
+  "/my-team",
+  protect,
+  authorize("manager"),
+  async (req, res, next) => {
+    try {
+      const employees = await User.find({
+        manager: req.user._id,
+        role: "employee",
+      })
+        .select("name email role")
+        .lean();
+
+      res.json(employees);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 /**
  * Protected Routes
  */

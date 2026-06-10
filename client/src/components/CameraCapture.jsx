@@ -69,7 +69,7 @@ export default function CameraCapture({ onCapture }) {
       {error ? (
         <div className="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 dark:border-red-600 rounded-lg p-3 sm:p-4">
           <div className="flex items-start sm:items-center">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <i className="fas fa-exclamation-triangle text-red-500 dark:text-red-300 text-sm sm:text-base"></i>
             </div>
             <div className="ml-2 sm:ml-3 flex-1">
@@ -87,7 +87,9 @@ export default function CameraCapture({ onCapture }) {
               <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-10">
                 <div className="text-center px-4">
                   <div className="inline-block animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-white mb-2 sm:mb-3"></div>
-                  <p className="text-white text-xs sm:text-sm">Initializing camera...</p>
+                  <p className="text-white text-xs sm:text-sm">
+                    Initializing camera...
+                  </p>
                 </div>
               </div>
             )}
@@ -120,7 +122,9 @@ export default function CameraCapture({ onCapture }) {
             {isCameraReady && !preview && (
               <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1 text-white text-[10px] sm:text-xs whitespace-nowrap">
                 <i className="fas fa-smile-wink mr-1"></i>
-                <span className="hidden xs:inline">Position your face in the center</span>
+                <span className="hidden xs:inline">
+                  Position your face in the center
+                </span>
                 <span className="xs:hidden">Face center</span>
               </div>
             )}
@@ -140,7 +144,7 @@ export default function CameraCapture({ onCapture }) {
                   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
                   ${
                     isCameraReady
-                      ? "bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 shadow-lg"
+                      ? "bg-linear-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 shadow-lg"
                       : "bg-gray-400 cursor-not-allowed"
                   }
                 `}
@@ -169,7 +173,7 @@ export default function CameraCapture({ onCapture }) {
                   type="button"
                   onClick={capture}
                   disabled={!isCameraReady}
-                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 font-medium shadow-md text-sm sm:text-base"
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-2 bg-linear-to-r from-indigo-500 to-purple-600 text-white rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 font-medium shadow-md text-sm sm:text-base"
                 >
                   <i className="fas fa-camera mr-1 sm:mr-2"></i>
                   <span>Capture Again</span>
@@ -180,9 +184,9 @@ export default function CameraCapture({ onCapture }) {
 
           {/* Preview Section */}
           {preview && (
-            <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-lg sm:rounded-xl border border-indigo-100 dark:border-gray-700">
+            <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-linear-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-lg sm:rounded-xl border border-indigo-100 dark:border-gray-700">
               <div className="flex flex-col xs:flex-row items-start gap-3">
-                <div className="flex-shrink-0 self-center xs:self-start">
+                <div className="shrink-0 self-center xs:self-start">
                   <div className="relative">
                     <img
                       src={preview}
@@ -211,7 +215,9 @@ export default function CameraCapture({ onCapture }) {
           {isCameraReady && !preview && (
             <div className="text-center text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 px-2">
               <i className="fas fa-info-circle mr-1 text-xs"></i>
-              <span className="hidden xs:inline">Position your face clearly in the frame and tap capture</span>
+              <span className="hidden xs:inline">
+                Position your face clearly in the frame and tap capture
+              </span>
               <span className="xs:hidden">Face in frame, tap capture</span>
             </div>
           )}

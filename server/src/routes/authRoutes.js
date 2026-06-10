@@ -1,15 +1,13 @@
 import express from "express";
 import User from "../models/User.js";
-import { protect } from "../middleware/authMiddleware.js";
 import { signToken } from "../utils/auth.js";
-
+import {
+  protect,
+  authorize,
+} from "../middleware/authMiddleware.js";
 const router = express.Router();
 
-const ALLOWED_ROLES = [
-  "employee",
-  "manager",
-  "admin",
-];
+
 
 /**
  * Signup
@@ -19,12 +17,13 @@ router.post(
   async (req, res, next) => {
     try {
       let {
-        name,
-        email,
-        password,
-        role = "employee",
-        manager,
-      } = req.body;
+  name,
+  email,
+  password,
+  manager,
+} = req.body;
+
+const role = "employee";
 
       name = name?.trim();
       email = email?.trim().toLowerCase();
@@ -49,14 +48,8 @@ router.post(
         });
       }
 
-      if (
-        !ALLOWED_ROLES.includes(role)
-      ) {
-        return res.status(400).json({
-          success: false,
-          message: "Invalid role",
-        });
-      }
+
+
 
       /**
        * For assessment:
@@ -184,7 +177,23 @@ router.post(
   }
 );
 
+router.get(
+  "/my-team",
+  protect,
+  authorize("manager"),
+  async (req, res, next) => {
+    try {
+      const employees = await User.find({
+        manager: req.user._id,
+        role: "employee",
+      });
 
+      res.json(employees);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 /**
  * Current User

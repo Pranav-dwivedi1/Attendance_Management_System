@@ -17,6 +17,7 @@ const baseQuery = async (args, api, extraOptions) => {
 };
 
 export const api = createApi({
+  
   reducerPath: "api",
   baseQuery,
   tagTypes: ["Attendance", "Users", "Report"],
@@ -96,6 +97,9 @@ export const api = createApi({
       }),
       invalidatesTags: ["Attendance", "Report"],
     }),
+    myTeam: builder.query({
+  query: () => "/users/my-team",
+}),
     dailyReport: builder.query({
       query: (date) => ({ url: "/reports/daily", params: { date } }),
       providesTags: ["Report"],
@@ -118,4 +122,5 @@ export const {
   useReviewOvertimeMutation,
   useValidateAttendanceMutation,
   useDailyReportQuery,
+  useMyTeamQuery,
 } = api;

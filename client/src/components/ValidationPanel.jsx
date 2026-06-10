@@ -134,7 +134,7 @@ export default function ValidationPanel({ record }) {
             ${
               isLoading
                 ? "bg-gray-400 dark:bg-gray-600"
-                : "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-md hover:shadow-lg"
+                : "bg-linear-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-md hover:shadow-lg"
             }
           `}
         >
@@ -164,7 +164,11 @@ export default function ValidationPanel({ record }) {
             </span>
           ) : (
             <span className="flex items-center justify-center gap-1.5 sm:gap-2">
-              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-3 h-3 sm:w-4 sm:h-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -188,7 +192,7 @@ export default function ValidationPanel({ record }) {
             ${
               isLoading
                 ? "bg-gray-400 dark:bg-gray-600"
-                : "bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 shadow-md hover:shadow-lg"
+                : "bg-linear-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 shadow-md hover:shadow-lg"
             }
           `}
         >
@@ -218,7 +222,11 @@ export default function ValidationPanel({ record }) {
             </span>
           ) : (
             <span className="flex items-center justify-center gap-1.5 sm:gap-2">
-              <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-3 h-3 sm:w-4 sm:h-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -234,7 +242,7 @@ export default function ValidationPanel({ record }) {
       {/* Help Text */}
       <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-300 flex items-start gap-1 bg-white dark:bg-gray-900/50 p-2 sm:p-2.5 rounded-lg border border-gray-200 dark:border-gray-700">
         <svg
-          className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-yellow-500 mt-0.5 flex-shrink-0"
+          className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-yellow-500 mt-0.5 shrink-0"
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -245,8 +253,12 @@ export default function ValidationPanel({ record }) {
           />
         </svg>
         <span className="leading-relaxed">
-          <strong className="font-semibold">Tip:</strong> 
-          <span className="hidden xs:inline"> Remarks are required when rejecting. You can leave them empty when approving.</span>
+          <strong className="font-semibold">Tip:</strong>
+          <span className="hidden xs:inline">
+            {" "}
+            Remarks are required when rejecting. You can leave them empty when
+            approving.
+          </span>
           <span className="xs:hidden"> Remarks required for rejection</span>
         </span>
       </div>
@@ -255,7 +267,7 @@ export default function ValidationPanel({ record }) {
       {!remarks.trim() && !isLoading && (
         <div className="text-[10px] sm:text-xs text-amber-600 dark:text-amber-300 flex items-start gap-1 bg-amber-50 dark:bg-amber-900/20 p-2 sm:p-2.5 rounded-lg border border-amber-200 dark:border-amber-600">
           <svg
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-500 mt-0.5 flex-shrink-0"
+            className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-500 mt-0.5 shrink-0"
             fill="currentColor"
             viewBox="0 0 20 20"
           >

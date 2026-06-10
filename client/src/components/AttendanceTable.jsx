@@ -54,7 +54,7 @@ export default function AttendanceTable({ records = [], actions }) {
       {/* Desktop Table View - Hidden on mobile */}
       <div className="hidden lg:block overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead className="bg-gradient-to-r from-gray-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700">
+          <thead className="bg-linear-to-r from-gray-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700">
             <tr>
               <th
                 scope="col"
@@ -134,7 +134,7 @@ export default function AttendanceTable({ records = [], actions }) {
               >
                 <td className="px-4 py-3 whitespace-nowrap">
                   <div className="flex items-center">
-                    <div className="flex-shrink-0 h-8 w-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <div className="shrink-0 h-8 w-8 bg-linear-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs font-medium">
                         {record.employee?.name?.charAt(0).toUpperCase() || "?"}
                       </span>
@@ -246,10 +246,10 @@ export default function AttendanceTable({ records = [], actions }) {
             className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-200"
           >
             {/* Card Header */}
-            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+            <div className="bg-linear-to-r from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <div className="h-10 w-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <div className="h-10 w-10 bg-linear-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
                     <span className="text-white font-medium text-sm">
                       {record.employee?.name?.charAt(0).toUpperCase() || "?"}
                     </span>

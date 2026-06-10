@@ -15,7 +15,6 @@ export default function AuthPage({ mode }) {
     name: "",
     email: "",
     password: "",
-    role: "employee",
     manager: "",
   });
 
@@ -87,7 +86,7 @@ export default function AuthPage({ mode }) {
       <div className="w-full max-w-[95%] sm:max-w-md md:max-w-md lg:max-w-md xl:max-w-md space-y-5 sm:space-y-6 md:space-y-7 lg:space-y-8 relative z-10">
         {/* Logo/Brand Section */}
         <div className="text-center">
-          <div className="mx-auto h-14 w-14 sm:h-16 sm:w-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+          <div className="mx-auto h-14 w-14 sm:h-16 sm:w-16 bg-linear-to-r from-indigo-500 to-purple-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
             <svg
               className="h-7 w-7 sm:h-8 sm:w-8 text-white"
               fill="none"
@@ -102,7 +101,7 @@ export default function AuthPage({ mode }) {
               />
             </svg>
           </div>
-          <h2 className="mt-4 sm:mt-5 md:mt-6 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent px-2">
+          <h2 className="mt-4 sm:mt-5 md:mt-6 text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-extrabold bg-linear-to-r from-gray-900 to-gray-700 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent px-2">
             {isSignup ? "Create Account" : "Welcome Back"}
           </h2>
           <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300 px-4">
@@ -114,7 +113,10 @@ export default function AuthPage({ mode }) {
 
         {/* Auth Form Card */}
         <div className="bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden transform transition-all duration-300 hover:shadow-xl">
-          <form onSubmit={submit} className="p-4 sm:p-5 md:p-6 lg:p-8 space-y-4 sm:space-y-5">
+          <form
+            onSubmit={submit}
+            className="p-4 sm:p-5 md:p-6 lg:p-8 space-y-4 sm:space-y-5"
+          >
             {/* Name Field - Signup Only */}
             {isSignup && (
               <div className="transform transition-all duration-200">
@@ -180,7 +182,9 @@ export default function AuthPage({ mode }) {
                   onClick={togglePasswordVisibility}
                   className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                 >
-                  <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"} text-xs sm:text-sm`}></i>
+                  <i
+                    className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"} text-xs sm:text-sm`}
+                  ></i>
                 </button>
               </div>
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
@@ -197,46 +201,46 @@ export default function AuthPage({ mode }) {
                     Role
                   </label>
                   <div className="relative">
-                    <select
-                      name="role"
-                      value={form.role}
-                      onChange={update}
-                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg sm:rounded-xl bg-white dark:bg-gray-900 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 appearance-none pl-8 sm:pl-10 pr-8 sm:pr-10"
-                    >
-                      <option value="employee">👔 Employee</option>
-                      <option value="manager">📊 Manager</option>
-                      <option value="admin">⚙️ Admin</option>
-                    </select>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value="👔 Employee"
+                        disabled
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg sm:rounded-xl bg-gray-100 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+                      />
+                    </div>
                     <i className="fas fa-user-tag absolute left-2.5 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs sm:text-sm"></i>
                     <i className="fas fa-chevron-down absolute right-2.5 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs sm:text-sm pointer-events-none"></i>
                   </div>
                 </div>
 
-                {form.role === "employee" && (
-                  <div className="transform transition-all duration-300 animate-in">
-                    <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 sm:mb-2">
-                      <i className="fas fa-user-tie mr-1 sm:mr-2 text-indigo-500 text-xs sm:text-sm"></i>
-                      Assign Manager
-                    </label>
-                    <div className="relative">
-                      <select
-                        name="manager"
-                        value={form.manager}
-                        onChange={update}
-                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg sm:rounded-xl bg-white dark:bg-gray-900 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 appearance-none pl-8 sm:pl-10 pr-8 sm:pr-10"
-                      >
-                        <option value="">No Manager Assigned</option>
-                        {managers.map((manager) => (
-                          <option key={manager._id} value={manager._id}>
-                            {manager.name} ({manager.role})
-                          </option>
-                        ))}
-                      </select>
-                      <i className="fas fa-user-tie absolute left-2.5 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs sm:text-sm"></i>
-                      <i className="fas fa-chevron-down absolute right-2.5 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs sm:text-sm pointer-events-none"></i>
-                    </div>
+                <div className="transform transition-all duration-300 animate-in">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 sm:mb-2">
+                    <i className="fas fa-user-tie mr-1 sm:mr-2 text-indigo-500 text-xs sm:text-sm"></i>
+                    Assign Manager
+                  </label>
+
+                  <div className="relative">
+                    <select
+                      name="manager"
+                      value={form.manager}
+                      onChange={update}
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg sm:rounded-xl bg-white dark:bg-gray-900 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 appearance-none pl-8 sm:pl-10 pr-8 sm:pr-10"
+                    >
+                      <option value="">No Manager Assigned</option>
+
+                      {managers.map((manager) => (
+                        <option key={manager._id} value={manager._id}>
+                          {manager.name} ({manager.role})
+                        </option>
+                      ))}
+                    </select>
+
+                    <i className="fas fa-user-tie absolute left-2.5 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs sm:text-sm"></i>
+
+                    <i className="fas fa-chevron-down absolute right-2.5 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs sm:text-sm pointer-events-none"></i>
                   </div>
-                )}
+                </div>
               </>
             )}
 
@@ -244,7 +248,7 @@ export default function AuthPage({ mode }) {
             {error && (
               <div className="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 rounded-lg p-3 sm:p-4 animate-shake">
                 <div className="flex items-start sm:items-center">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <i className="fas fa-exclamation-circle text-red-500 text-sm sm:text-base"></i>
                   </div>
                   <div className="ml-2 sm:ml-3 flex-1">
@@ -262,7 +266,7 @@ export default function AuthPage({ mode }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg text-sm sm:text-base"
+              className="w-full bg-linear-to-r from-indigo-500 to-purple-600 text-white font-semibold py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg sm:rounded-xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg text-sm sm:text-base"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -323,99 +327,6 @@ export default function AuthPage({ mode }) {
           <p>Secure authentication • Protected by industry standards</p>
         </div>
       </div>
-
-      {/* Global Styles for animations */}
-      <style>{`
-        @keyframes slide-in-from-top {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes shake {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(-5px);
-          }
-          75% {
-            transform: translateX(5px);
-          }
-        }
-        
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.3;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-        
-        .animate-in {
-          animation: slide-in-from-top 0.3s ease-out;
-        }
-        
-        .animate-shake {
-          animation: shake 0.3s ease-in-out;
-        }
-        
-        .animate-pulse {
-          animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        .delay-1000 {
-          animation-delay: 1s;
-        }
-        
-        /* Prevent zoom on iOS for form inputs */
-        @media (max-width: 768px) {
-          input, 
-          select, 
-          textarea,
-          button {
-            font-size: 16px !important;
-          }
-        }
-        
-        /* Improve touch targets on mobile */
-        @media (max-width: 768px) {
-          button, 
-          [role="button"],
-          input,
-          select {
-            min-height: 44px;
-          }
-        }
-        
-        /* Smooth scrolling */
-        @media (max-width: 768px) {
-          html {
-            -webkit-overflow-scrolling: touch;
-          }
-        }
-        
-        /* Reduce animations on devices that prefer reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-          .animate-pulse,
-          .animate-in,
-          .animate-shake,
-          .transition-all,
-          .transform,
-          .hover\\:scale-\\[1\\.02\\]:hover {
-            animation: none !important;
-            transition: none !important;
-            transform: none !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
